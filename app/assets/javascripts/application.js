@@ -15,3 +15,11 @@
 //= require_tree .
 
 //= require bootstrap
+
+
+$(function(){
+  message = $('.alert');
+  if (message.is(':visible')) {
+    setTimeout("message.fadeOut('slow')", 5000);
+  }
+});

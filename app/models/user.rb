@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   rolify
 
   def role
-    self.roles.first.name
+    self.roles.first.name unless self.roles.empty?
   end
 
 end
