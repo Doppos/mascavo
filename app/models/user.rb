@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :image, :image_cache
   attr_accessible :role_ids, :as => :admin
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  has_and_belongs_to_many :accounts
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
