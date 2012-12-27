@@ -1,0 +1,6 @@
+[1m[37m      invoke[0m  active_record
+[1m[32m      create[0m    db/migrate/20121224222426_create_lists.rb
+[1m[32m      create[0m    app/models/list.rb
+[1m[37m      invoke[0m    test_unit
+[1m[32m      create[0m      test/unit/list_test.rb
+[1m[32m      create[0m      test/fixtures/lists.yml
