@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  trading_name: MyString
+  image: MyString
+  employees: 1
+  annual_income: 1.5
+  industry: MyString
+  notes: MyText
+  public: false
+  active: false
+  account: 
+  created_by: 1
+  updated_by: 1
+
+two:
+  name: MyString
+  trading_name: MyString
+  image: MyString
+  employees: 1
+  annual_income: 1.5
+  industry: MyString
+  notes: MyText
+  public: false
+  active: false
+  account: 
+  created_by: 1
+  updated_by: 1
