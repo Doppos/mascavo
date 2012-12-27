@@ -4,5 +4,6 @@ class Contact < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :source
+  has_many :companies, :through => :professionals
 
 end
