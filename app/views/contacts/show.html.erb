@@ -1,0 +1,7 @@
+<h2><%= @contact.name %></h2>
+<p>Status: <%= @contact.status %></p>
+<p>Source: <%= @contact.source.label %></p>
+<p>Date: <%= @contact.date.to_date %></p>
+<p>Birthdate: <%= @contact.birthdate.to_date %></p>
+<p>Notes: <%= @contact.notes %></p>
+<p>Created at: <%= @contact.created_at.to_date %> by <%= @contact.created_by %> on <%= @contact.account.name %> account</p>

@@ -1,6 +1,6 @@
 class ContactInfo < ActiveRecord::Base
 
-  attr_accessible :name, :preferable, :type, :value
+  attr_accessible :name, :preferable, :label, :value
 
   belongs_to :resource, :polymorphic => true
 

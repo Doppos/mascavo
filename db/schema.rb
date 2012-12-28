@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227204300) do
+ActiveRecord::Schema.define(:version => 20121228005657) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
     t.string   "zipcode"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "type"
+    t.string   "label"
     t.boolean  "preferable"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
   create_table "contact_infos", :force => true do |t|
     t.string   "name"
     t.string   "value"
-    t.string   "type"
+    t.string   "label"
     t.boolean  "preferable"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
     t.string   "name"
     t.string   "image"
     t.date     "birthdate"
-    t.string   "type"
+    t.string   "status"
     t.text     "notes"
     t.boolean  "public"
     t.boolean  "active"
@@ -143,13 +143,27 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
   create_table "document_infos", :force => true do |t|
     t.string   "name"
     t.string   "value"
-    t.string   "type"
+    t.string   "label"
     t.boolean  "preferable"
     t.integer  "resource_id"
     t.string   "resource_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "company_id"
+    t.string   "position"
+    t.boolean  "primary_contact"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "contact_id"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+  end
+
+  add_index "jobs", ["company_id"], :name => "index_jobs_on_company_id"
+  add_index "jobs", ["contact_id"], :name => "index_jobs_on_contact_id"
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -168,27 +182,13 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
   create_table "online_infos", :force => true do |t|
     t.string   "name"
     t.string   "value"
-    t.string   "type"
+    t.string   "label"
     t.boolean  "preferable"
     t.integer  "resource_id"
     t.string   "resource_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
-
-  create_table "professionals", :force => true do |t|
-    t.integer  "company_id"
-    t.string   "position"
-    t.boolean  "primary_contact"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "contact_id"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-  end
-
-  add_index "professionals", ["company_id"], :name => "index_professionals_on_company_id"
-  add_index "professionals", ["contact_id"], :name => "index_professionals_on_contact_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -202,8 +202,8 @@ ActiveRecord::Schema.define(:version => 20121227204300) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sources", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
+    t.string   "value"
+    t.string   "label"
     t.text     "description"
     t.boolean  "active"
     t.integer  "account_id"
