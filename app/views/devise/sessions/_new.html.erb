@@ -1,0 +1,17 @@
+<div id="signin-modal" class="modal vertical hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Sign in</h3>
+  </div>
+    <div class="modal-body">
+      <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name) do |f| %>
+      <%= f.input :email, :placeholder => "Email", :label => false, :error => false, :autofocus => true %>
+      <%= f.input :password, :placeholder => "Password", :label => false, :error => false %>
+      <%= f.input :remember_me, :as => :boolean, :inline_label => true, :label => false, :error => false if devise_mapping.rememberable? %>
+      <%= link_to "Forgot your password?", new_user_password_path, :class => "pull-left" %>
+    </div>
+    <div class="modal-footer">
+      <%= f.button :submit, "Sign in", :class => "btn-primary" %>
+      <% end %>
+    </div>
+</div>

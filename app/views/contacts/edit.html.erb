@@ -1,0 +1,12 @@
+<h2><%= t(:'title.edit_contact') %></h2>
+
+<ul class="nav nav-tabs">
+  <li class="active"><%= link_to "Resetar formulário" %></li>
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.show'), :eye_open, :white), contact_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), contacts_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_contact'), :plus), new_contact_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render "contacts/form" %>

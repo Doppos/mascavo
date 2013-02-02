@@ -1,7 +1,145 @@
-<h2><%= @contact.name %></h2>
-<p>Status: <%= @contact.status %></p>
-<p>Source: <%= @contact.source.label %></p>
-<p>Date: <%= @contact.date.to_date %></p>
-<p>Birthdate: <%= @contact.birthdate.to_date %></p>
-<p>Notes: <%= @contact.notes %></p>
-<p>Created at: <%= @contact.created_at.to_date %> by <%= @contact.created_by %> on <%= @contact.account.name %> account</p>
+<h2><%= @contact.name %> <%= labeled t(@contact.status, :scope => :label), @contact.status_label %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.details'), contact_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.activities'), contact_path(:tab => :activities) %>
+  <%= nav_link_to t(:'button.deals'), contact_path(:tab => :deals) %>
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.edit'), :pencil, :white), edit_contact_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), contacts_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_contact'), :plus), new_contact_path, :class => "btn" %>
+  </div>
+</ul>
+
+<div class="row-fluid">
+  <div class="span8">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.professional_info') %></h4>
+      <ul class="well-list">
+        <% @contact.jobs.each do |job| %>
+          <li>
+            <h4><%= job.position %></h4>
+            <h3><%= link_to job.company.name, company_path %></h3>
+            <div class="tags">
+              <%= content_tag :span, iconed(job.company.industry, :tag) unless job.company.industry.nil? %>
+              <%= content_tag :span, iconed(t(:'label.primary_contact'), :ok) if job.primary_contact %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.contact_info') %></h4>
+      <ul class="well-list">
+        <% @contact.contact_infos.each do |contact_info| %>
+          <li>
+            <h5><%= contact_info.name %></h5>
+            <h4><%= contact_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(contact_info.label, :tag) unless contact_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if contact_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.online_info') %></h4>
+      <ul class="well-list">
+        <% @contact.online_infos.each do |online_info| %>
+          <li>
+            <h5><%= online_info.name %></h5>
+            <h4><%= online_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(online_info.label, :tag) unless online_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if online_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.address_info') %></h4>
+      <ul class="well-list">
+        <% @contact.address_infos.each do |address_info| %>
+          <li>
+            <h4><%= address_info.city << " - " << address_info.state %></h4>
+            <h5><%= address_info.street %></h5>
+            <h5><%= address_info.zipcode %></h5>
+            <div class="tags">
+              <%= content_tag :span, iconed(address_info.label, :tag) unless address_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if address_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.document_info') %></h4>
+      <ul class="well-list">
+        <% @contact.document_infos.each do |document_info| %>
+          <li>
+            <h5><%= document_info.name %></h5>
+            <h4><%= document_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(document_info.label, :tag) unless document_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if document_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.personal_info') %></h4>
+      <div class="thumbnail">
+        <%= image_tag image_path("user-photo.png") %>
+      </div>
+      <h5><%= t(:'field.birthdate') %></h5>
+      <h4><%= l(@contact.birthdate) %></h4>
+      <div class="tags">
+        <%= @contact.notes %>
+      </div>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.source_info') %></h4>
+      <div class="info">
+        <h5><%= @contact.source.label %></h5>
+        <h4><%= @contact.source.value %></h4>
+        <h5><%= l(@contact.date, :format => :shorter) << ", há " << time_ago_in_words(@contact.date) %></h5>
+        <div class="tags">
+          <%= @contact.source.description %>
+        </div>
+      </div>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.other_info') %></h4>
+      <ul class="well-list">
+        <li>
+        <%= labeled t(@contact.public_label[:text], :scope => :label), @contact.public_label[:type] %>
+        <%= labeled t(@contact.active_label[:text], :scope => :label), @contact.active_label[:type] %>
+        </li>
+        <li>
+        <h5><%= t(:'misc.created_at') %> <%= l(@contact.created_at) %></h5>
+        <div class="tags">
+          <%= iconed @contact.created_by_user.name, :user %>
+        </div>
+        </li>
+        <li>
+        <h5><%= t(:'misc.updated_at') %> <%= l(@contact.updated_at) %></h5>
+        <div class="tags">
+          <%= iconed @contact.updated_by_user.name, :user %>
+        </div>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>

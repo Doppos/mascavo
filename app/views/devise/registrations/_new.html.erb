@@ -1,0 +1,16 @@
+<div id="signup-modal" class="modal vertical hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Sign up</h3>
+  </div>
+    <div class="modal-body">
+      <%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f| %>
+      <%= f.input :email, :placeholder => "Email", :label => false, :required => true , :autofocus => true %>
+      <%= f.input :password, :placeholder => "Password", :label => false, :required => true %>
+      <%= f.input :password_confirmation, :placeholder => "Password confirmation", :label => false, :required => true %>
+    </div>
+    <div class="modal-footer">
+      <%= f.button :submit, "Sign up", :class => "btn-success" %>
+      <% end %>
+    </div>
+</div>

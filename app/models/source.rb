@@ -5,4 +5,8 @@ class Source < ActiveRecord::Base
   belongs_to :account
   has_many :contacts
 
+  def name
+    self.label << " - " << self.value
+  end
+
 end

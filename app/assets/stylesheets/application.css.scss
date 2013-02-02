@@ -15,6 +15,11 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
+$brown: SaddleBrown;
+$grey: #ccc;
+$dark: #222;
+$light: #eee;
+
 /*@mixin content_shadow {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
@@ -27,20 +32,141 @@
   border-radius: 0 0 6px 6px;
 }*/
 
-.content {
-  padding-top: 70px;
-}
+html {
+  overflow-y: scroll; }
 
-.sign-box {
-  max-width: 220px;
-  padding: 20px 30px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid #e5e5e5;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-          box-shadow: 0 1px 2px rgba(0,0,0,.05);
-}
+.clear {
+  clear:both; }
+
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+  color: $grey;
+  line-height: 36px;
+  &:hover {
+    text-decoration: none;
+    color: $brown; }}
+
+.footer {
+  text-align: center;
+
+  a {
+    color: $grey;
+    &:hover {
+      text-decoration: none;
+      color: $brown; }}}
+
+.container-fluid {
+  max-width: 1170px;
+  margin: 0 auto; }
+
+#welcome {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  .container-fluid {
+    max-width: 700px;
+    margin: 0 auto; }
+
+  .jumbotron {
+    margin: 60px 0;
+    text-align: center; }
+
+  .jumbotron h1 {
+    font-size: 72px;
+    line-height: 1; }
+
+  .jumbotron .btn {
+    font-size: 22px;
+    padding: 14px 24px; }
+
+  .marketing {
+    margin: 60px 0; }
+
+  .marketing h2 {
+    font-size: 20px; }
+
+  .marketing p + h2 {
+    margin-top: 28px; }}
+
+#devise-sessions,
+#devise-registrations {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  .container-fluid {
+    max-width: 540px;
+    margin: 0 auto; }
+
+  .content {
+    padding-top: 25px;
+    padding-bottom: 30px; }
+
+    .help-inline {
+      font-size: 0.8em;
+      display: block; }}
+
+.modal.vertical {
+  width: 280px;
+  margin-left: -140px;
+
+  .modal-header,
+  .modal-footer {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+
+  .modal-body {
+    padding: 30px; }}
+
+.user-welcome {
+  margin-top: 5px; }
+
+.table thead {
+  background: #e5e5e5;
+  border-top: 1px solid #ddd; }
+
+h2 .label, h3 .label, h4 .label {
+  vertical-align: middle; }
+
+.well-title {
+  color: #ccc;
+  font-weight: normal;
+  font-size: 17.5px;
+  text-shadow: 2px 2px #fff;
+  margin: 0 0 5px 0; }
+
+.well-list {
+  list-style: none;
+  margin: 0;
+
+  li {
+    padding: 10px 0 5px; }}
+
+.well-info {
+
+  .info {
+    padding-top: 10px; }
+
+  h3 {
+    line-height: 1;
+    margin: 2px 0 9px 0; }
+
+  h4, h5 {
+    margin: 0; }
+
+  .thumbnail {
+    margin: 20px 0 15px; }
+
+  .tags {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 2px 0;
+    margin-top: 7px;
+
+    span {
+      margin-right: 15px;
+      font-size: 0.9em; }}}
+
+
+
+

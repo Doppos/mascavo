@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
     self.roles.first.name unless self.roles.empty?
   end
 
+  def account
+    self.accounts.first unless self.accounts.empty?
+  end
+
 end

@@ -1,0 +1,8 @@
+<h2><%= t(:'title.new_contact') %></h2>
+
+<ul class="nav nav-tabs">
+  <li class="active"><%= link_to "Resetar formulário" %></li>
+  <%= link_to iconed(t(:'button.list'), :th_list, :white), contacts_path, :class => "btn btn-primary pull-right" %>
+</ul>
+
+<%= render "contacts/form" %>

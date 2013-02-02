@@ -20,6 +20,6 @@
 $(function(){
   message = $('.alert');
   if (message.is(':visible')) {
-    setTimeout("message.fadeOut('slow')", 5000);
+    setTimeout("message.fadeOut('slow')", 4000);
   }
 });
