@@ -12,8 +12,12 @@ Mascavo::Application.routes.draw do
 
   resources :contacts
 
+  resources :companies
+
   resources :sources
 
-  resources :companies
+  resources :deals
+
+  resources :activities
 
 end

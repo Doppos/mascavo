@@ -12,8 +12,9 @@ module ApplicationHelper
 
   def nav_link_to(link_text, link_path, options={})
     match = options.delete(:match)
-    current_page_class = current_page?(link_path, match) ? 'active' : nil
-    content_tag :li, :class => current_page_class do
+    wrap_class = options.delete(:wrap_class)
+    wrap_class = wrap_class.to_s << " active" if current_page?(link_path, match)
+    content_tag :li, :class => wrap_class do
       link_to link_text, link_path, options
     end
   end

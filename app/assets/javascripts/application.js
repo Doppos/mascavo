@@ -18,8 +18,10 @@
 
 
 $(function(){
-  message = $('.alert');
+  message = $('.alert').not('.alert-box');
   if (message.is(':visible')) {
     setTimeout("message.fadeOut('slow')", 4000);
   }
+
+  $('[rel~=tooltip]').tooltip();
 });

@@ -1,76 +1,105 @@
-<%= simple_form_for @contact, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= t(:'fieldset.contact_source') %></legend>
-    <%= f.input :source, :label => t(:'field.source') do %>
-      <%= f.input_field :source_id, :as => :select, :collection => source_collection, :include_blank => t(:'message.select_source') %>
-      <%= link_to t(:'button.add_new_source'), new_source_path, :class => "btn btn-medium btn-primary" %>
-    <% end %>
-    <%= f.input :date, :label => t(:'field.date') %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.personal_information') %></legend>
-    <%= f.input :name, :label => t(:'field.name') %>
-    <%= f.input :image, :label => t(:'field.image'), :as => :file %>
-    <%= f.input :birthdate, :label => t(:'field.birthdate'), :start_year => Date.today.year - 70, :end_year => Date.today.year - 12 %>
-    <%= f.input :status, :label => t(:'field.status'), :collection => listable(:contacts, :status), :include_blank => false; %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.address_information') %></legend>
-    <%= f.simple_fields_for :address_infos do |a| %>
-      <%= a.input :street, :label => t(:'field.street') %>
-      <%= a.input :city, :label => t(:'field.city') %>
-      <%= a.input :state, :label => t(:'field.state') %>
-      <%= a.input :zipcode, :label => t(:'field.zipcode') %>
-      <%= a.input :label, :label => t(:'field.type'), :collection => listable(:address_infos, :label), :include_blank => false %>
-      <%= a.input :preferable, :inline_label => t(:'field.preferable'), :label => false %>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.contact_information') %></legend>
-    <%= f.simple_fields_for :contact_infos do |a| %>
-      <%= a.input :contact_info, :label => t(:'field.contact') do %>
-        <%= a.input_field :name, :label => false, :collection => listable(:contact_infos, :name), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :value, :label => false %>
-        <%= a.input_field :label, :label => false, :collection => listable(:contact_infos, :label), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
-      <% end %>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.online_information') %></legend>
-    <%= f.simple_fields_for :online_infos do |a| %>
-      <%= a.input :online_info, :label => t(:'field.online') do %>
-        <%= a.input_field :name, :label => false, :collection => listable(:online_infos, :name), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :value, :label => false %>
-        <%= a.input_field :label, :label => false, :collection => listable(:online_infos, :label), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
-      <% end %>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.document_information') %></legend>
-    <%= f.simple_fields_for :document_infos do |a| %>
-      <%= a.input :document_info, :label => t(:'field.document') do %>
-        <%= a.input_field :name, :label => false, :collection => listable(:document_infos, :name), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :value, :label => false %>
-        <%= a.input_field :label, :label => false, :collection => listable(:document_infos, :label), :include_blank => false, :class => "span2" %>
-        <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
-      <% end %>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.professional_information') %></legend>
-    <%= f.simple_fields_for :jobs do |a| %>
-      <%= a.association :company, :label => t(:'field.company') %>
-      <%= a.input :position, :label => t(:'field.position') %>
-      <%= a.input :primary_contact, :inline_label => t(:'field.primary_contact'), :label => false %>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend><%= t(:'fieldset.other_information') %></legend>
-    <%= f.input :notes, :label => t(:'field.notes'), :input_html => { :rows => 3 } %>
-    <%= f.input :public, :inline_label => t(:'field.public'), :label => false %>
-    <%= f.input :active, :inline_label => t(:'field.active'), :label => false %>
-  </fieldset>
-  <%= f.button :submit, :value => t(:'button.save_contact'), :class => "btn-primary" %>
+<%= simple_form_for @contact do |f| %>
+  <div class="alert alert-info alert-box">
+    <%= f.button :submit, :value => t(:'button.save_contact'), :class => "btn-primary" %>
+  </div>
+
+  <div class="tab-content">
+    <div id="primary_data" class="tab-pane fade active in row-fluid">
+      <div class="span8 form-horizontal">
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.contact') %></h4>
+          <%= f.input :name, :label => t(:'field.name') %>
+          <%= f.input :status, :label => t(:'field.status'), :collection => listable(:contacts, :status), :include_blank => false; %>
+          </div>
+          <div class="well">
+            <h4 class="well-title"><%= t(:'fieldset.professional_information') %></h4>
+          <%= f.simple_fields_for :jobs do |a| %>
+            <%= a.input :company, :label => t(:'field.company') do %>
+              <%= a.input_field :company_id, :as => :select, :collection => Company.all, :include_blank => t(:'message.select_company') %>
+              <%= link_to t(:'button.add_company'), new_company_path %>
+            <% end %>
+            <%= a.input :position, :label => t(:'field.position') %>
+            <%= a.input :primary_contact, :inline_label => t(:'field.primary_contact'), :label => false %>
+          <% end %>
+        </div>
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.contact_information') %></h4>
+          <%= f.simple_fields_for :contact_infos do |a| %>
+            <%= a.input :contact_info, :label => t(:'field.contact') do %>
+              <%= a.input_field :name, :label => false, :collection => listable(:contact_infos, :name), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :value, :label => false %>
+              <%= a.input_field :label, :label => false, :collection => listable(:contact_infos, :label), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="span4">
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.contact_source') %></h4>
+          <%= f.input :source, :label => t(:'field.source') do %>
+            <%= f.input_field :source_id, :as => :select, :collection => source_collection, :include_blank => t(:'message.select_source') %>
+            <%= link_to t(:'button.add_source'), new_source_path %>
+          <% end %>
+          <%= f.input :date, :label => t(:'field.date'), :as => :string %>
+        </div>
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.other_information') %></h4>
+          <%= f.input :public, :inline_label => t(:'field.public'), :label => false %>
+          <%= f.input :active, :inline_label => t(:'field.active'), :label => false %>
+        </div>
+      </div>
+    </div>
+
+    <div id="complementary_data" class="complementary tab-pane fade row-fluid">
+      <div class="span8 form-horizontal">
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.address_information') %></h4>
+          <%= f.simple_fields_for :address_infos do |a| %>
+            <%= a.input :street, :label => t(:'field.street') %>
+            <%= a.input :city, :label => t(:'field.city') %>
+            <%= a.input :state, :label => t(:'field.state') %>
+            <%= a.input :zipcode, :label => t(:'field.zipcode') %>
+            <%= a.input :label, :label => t(:'field.type'), :collection => listable(:address_infos, :label), :include_blank => false %>
+            <%= a.input :preferable, :inline_label => t(:'field.preferable'), :label => false %>
+          <% end %>
+        </div>
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.online_information') %></h4>
+          <%= f.simple_fields_for :online_infos do |a| %>
+            <%= a.input :online_info, :label => t(:'field.online') do %>
+              <%= a.input_field :name, :label => false, :collection => listable(:online_infos, :name), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :value, :label => false %>
+              <%= a.input_field :label, :label => false, :collection => listable(:online_infos, :label), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.document_information') %></h4>
+          <%= f.simple_fields_for :document_infos do |a| %>
+            <%= a.input :document_info, :label => t(:'field.document') do %>
+              <%= a.input_field :name, :label => false, :collection => listable(:document_infos, :name), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :value, :label => false %>
+              <%= a.input_field :label, :label => false, :collection => listable(:document_infos, :label), :include_blank => false, :class => "span2" %>
+              <%= a.input_field :preferable, :inline_label => t(:'field.preferable'), :label => false %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="span4">
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.personal_information') %></h4>
+          <%= f.input :birthdate, :label => t(:'field.birthdate'), :as => :string %>
+          <%= f.input :image, :label => t(:'field.image'), :as => :file %>
+        </div>
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.aditional_information') %></h4>
+          <%= f.input :notes, :label => t(:'field.notes'), :input_html => { :rows => 7, :class => "input-block-level" } %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 <% end %>

@@ -208,7 +208,7 @@ pt-BR:
       <<: *errors
 
   field:
-    source: Origem
+    source: Canal
     date: Data
     name: Nome
     image: Imagem
@@ -239,11 +239,13 @@ pt-BR:
     address_information: Endereço
     document_information: Documentos
     other_information: Outras informações
+    aditional_information: Informações adicionais
+    contact: Contato
   button:
     save_contact: Salvar contato
-    add_new_contact: Adicionar novo contato
-    add_new_source: Adicionar nova origem
     new_contact: Novo contato
+    add_source: adicionar canal
+    add_company: adicionar empresa
     show: Visualizar
     list: Listar
     edit: Editar
@@ -270,17 +272,33 @@ pt-BR:
     other_info: Outras informações
   message:
     are_you_sure?: Você tem certeza?
-    select_source: Selecione a origem
+    select_source: Selecione o canal
     send_to_trash?: Enviar para a lixeira?
+    select_company: Selecione a empresa
   label:
     active: ativo
-    garbage: lixeira
+    trash: lixeira
     public: público
     private: particular
     client: cliente
     lead: lead
     primary_contact: Contato principal
     preferable: Preferencial
+  tooltip:
+    view: Visualizar
+    edit: Editar
+    trash: Lixeira
   misc:
     created_at: Criado em
     updated_at: Atualizado em
+  menu:
+    contacts: Contatos
+    companies: Empresas
+    sources: Canais
+    deals: Negócios
+    activities: Atividades
+    account: Conta
+    dashboard: Painel
+
+  contact_was_successfully_updated: Contato atualizado com sucesso
+  contact_was_successfully_saved: Contato criado com sucesso

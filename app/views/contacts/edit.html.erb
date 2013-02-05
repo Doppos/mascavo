@@ -1,7 +1,8 @@
 <h2><%= t(:'title.edit_contact') %></h2>
 
 <ul class="nav nav-tabs">
-  <li class="active"><%= link_to "Resetar formulário" %></li>
+  <%= nav_link_to "Dados principais", "#primary_data", :'data-toggle' => "tab", :wrap_class => "active" %>
+  <%= nav_link_to "Dados complementares", "#complementary_data", :'data-toggle' => "tab" %>
   <div class="btn-group pull-right">
     <%= link_to iconed(t(:'button.show'), :eye_open, :white), contact_path, :class => "btn btn-primary" %>
     <%= link_to iconed(t(:'button.list'), :th_list), contacts_path, :class => "btn" %>

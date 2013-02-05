@@ -1,31 +1,34 @@
 <% if user_signed_in? %>
 
-  <div class="navtop clearfix">
-    <%= link_to "Mascavo CRM", root_path, :class => "brand" %>
-
-    <div class="user-welcome btn-group pull-right">
-      <%= link_to iconed(current_user.email, :user), edit_user_registration_path, :class => "btn btn-small" %>
-      <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><%= link_to iconed("Edit", :pencil), edit_user_registration_path %></li>
-        <li><%= link_to iconed("Delete", :trash) %></li>
-        <li><%= link_to iconed("Ban", :ban_circle) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "logout", destroy_user_session_path, :method=>"delete" %></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="navbar navbar-inverse">
+  <div class="navbar navbar-inverse navbar-static-top">
     <div class="navbar-inner">
-      <ul class="nav">
-        <%= nav_link_to "Dashboard", root_path %>
-        <%= nav_link_to "Contacts", contacts_path, :match => :first %>
+      <div class="container-fluid">
+        <h1 class="brand">Mascavo <span>CRM</span></h1>
+        <ul class="nav">
+          <%= nav_link_to t(:'menu.dashboard'), root_path %>
+          <%= nav_link_to t(:'menu.contacts'), contacts_path, :match => :first %>
+          <%= nav_link_to t(:'menu.companies'), companies_path, :match => :first %>
+          <%= nav_link_to t(:'menu.sources'), sources_path, :match => :first %>
+          <%= nav_link_to t(:'menu.deals'), deals_path, :match => :first %>
+          <%= nav_link_to t(:'menu.activities'), activities_path, :match => :first %>
+          <%= nav_link_to t(:'menu.account'), "#", :match => :first %>
+          <% if current_user.has_role? :admin %>
+            <%#= nav_link_to "Users", users_path, :match => :first %>
+          <% end %>
+        </ul>
 
-        <% if current_user.has_role? :admin %>
-          <%#= nav_link_to "Users", users_path, :match => :first %>
-        <% end %>
-      </ul>
+        <div class="user-welcome btn-group pull-right">
+          <%= link_to iconed(current_user.email, :user), edit_user_registration_path, :class => "btn btn-small" %>
+          <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to iconed("Edit", :pencil), edit_user_registration_path %></li>
+            <li><%= link_to iconed("Delete", :trash) %></li>
+            <li><%= link_to iconed("Ban", :ban_circle) %></li>
+            <li class="divider"></li>
+            <li><%= link_to "logout", destroy_user_session_path, :method=>"delete" %></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 

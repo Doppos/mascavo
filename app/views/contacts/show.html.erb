@@ -101,8 +101,10 @@
       <div class="thumbnail">
         <%= image_tag image_path("user-photo.png") %>
       </div>
-      <h5><%= t(:'field.birthdate') %></h5>
-      <h4><%= l(@contact.birthdate) %></h4>
+      <% unless @contact.birthdate.blank? %>
+        <h5><%= t(:'field.birthdate') %></h5>
+        <h4><%= l(@contact.birthdate) %></h4>
+      <% end %>
       <div class="tags">
         <%= @contact.notes %>
       </div>
@@ -111,12 +113,16 @@
     <div class="well well-info">
       <h4 class="well-title"><%= t(:'title.source_info') %></h4>
       <div class="info">
-        <h5><%= @contact.source.label %></h5>
-        <h4><%= @contact.source.value %></h4>
-        <h5><%= l(@contact.date, :format => :shorter) << ", há " << time_ago_in_words(@contact.date) %></h5>
-        <div class="tags">
-          <%= @contact.source.description %>
-        </div>
+        <% unless @contact.source.nil? %>
+          <h5><%= @contact.source.label %></h5>
+          <h4><%= @contact.source.value %></h4>
+          <h5><%= l(@contact.date, :format => :shorter) %></h5>
+          <div class="tags">
+            <%= @contact.source.description %>
+          </div>
+        <% else %>
+          <h5><%= l(@contact.date, :format => :shorter) %></h5>
+        <% end %>
       </div>
     </div>
 

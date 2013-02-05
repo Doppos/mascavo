@@ -9,7 +9,7 @@
 
 <div class="row-fluid">
   <div class="well span9">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>#</th>
@@ -17,7 +17,7 @@
           <th><%= t(:'field.company') %></th>
           <th><%= t(:'field.contact_info') %></th>
           <th><%= t(:'field.status') %></th>
-          <th style="width: 85px;"></th>
+          <th style="width: 70px;"></th>
         </tr>
       </thead>
       <tbody>
@@ -29,10 +29,10 @@
             <td><%= contact.preferable_contact %></td>
             <td><%= labeled t(contact.status, :scope => :label), contact.status_label %></td>
             <td>
-              <div class="btn-group">
-                <%= link_to iconed(nil, :eye_open), contact, :class => 'btn btn-mini' %>
-                <%= link_to iconed(nil, :pencil), edit_contact_path(contact), :class => 'btn btn-mini' %>
-                <%= link_to iconed(nil, :trash, :white), contact_path(contact), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :class => "btn btn-mini btn-danger" %>
+              <div class="actions">
+                <%= link_to iconed(nil, :eye_open), contact, :rel => "tooltip", :'data-original-title' => t(:'tooltip.view') %>
+                <%= link_to iconed(nil, :pencil), edit_contact_path(contact), :rel => "tooltip", :'data-original-title' => t(:'tooltip.edit') %>
+                <%= link_to iconed(nil, :trash), contact_path(contact), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :rel => "tooltip", :'data-original-title' => t(:'tooltip.trash') %>
               </div>
             </td>
           </tr>

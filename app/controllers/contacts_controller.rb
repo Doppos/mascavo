@@ -1,6 +1,8 @@
 class ContactsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :aditional_create_params, :only => :create
+  before_filter :aditional_update_params, :only => :update
 
   def index
     if params[:status]
@@ -15,7 +17,7 @@ class ContactsController < ApplicationController
   end
 
   def new
-    @contact = Contact.new
+    @contact = Contact.new :public => true, :active => true
     @contact.jobs.build
     @contact.contact_infos.build
     @contact.online_infos.build
@@ -25,6 +27,11 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find(params[:id])
+    @contact.jobs.build if @contact.jobs.empty?
+    @contact.contact_infos.build if @contact.contact_infos.empty?
+    @contact.online_infos.build if @contact.online_infos.empty?
+    @contact.document_infos.build if @contact.document_infos.empty?
+    @contact.address_infos.build if @contact.address_infos.empty?
   end
 
   def create
@@ -51,5 +58,15 @@ class ContactsController < ApplicationController
     @contact.destroy
     redirect_to contacts_url
   end
+
+  private
+    def aditional_create_params
+      params[:contact][:created_by] = params[:contact][:updated_by] = current_user.id
+      params[:contact][:account_id] = current_account.id
+    end
+
+    def aditional_update_params
+      params[:contact][:updated_by] = current_user.id
+    end
 
 end
