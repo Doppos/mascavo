@@ -1,0 +1,21 @@
+<%= simple_form_for @deal do |f| %>
+  <div class="alert alert-info alert-box">
+    <%= f.button :submit, :value => t(:'button.save_deal'), :class => "btn-primary" %>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span8 form-horizontal">
+      <div class="well">
+        <h4 class="well-title"><%= t(:'fieldset.deal_info') %></h4>
+        <%= f.input :date, :label => t(:'field.date'), :as => :string %>
+        <%= f.input :status, :label => t(:'field.status'), :collection => listable(:deals, :status), :include_blank => false; %>
+      </div>
+    </div>
+
+    <div class="span4">
+      <div class="well">
+        <h4 class="well-title"><%= t(:'fieldset.other_information') %></h4>
+      </div>
+    </div>
+  </div>
+<% end %>

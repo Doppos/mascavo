@@ -1,0 +1,13 @@
+<h2><%= @deal.datetime %> <%= labeled @deal.status %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.details'), deal_path, :match => :fullpath %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.edit'), :pencil, :white), edit_deal_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), deals_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_deal'), :plus), new_deal_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render params[:tab] %>

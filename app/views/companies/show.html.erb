@@ -1,0 +1,15 @@
+<h2><%= @company.name %> <%= labeled t(@company.status, :scope => :label), @company.status_label %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.details'), company_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.deals'), company_path(:tab => :deals) %>
+  <%= nav_link_to t(:'button.activities'), company_path(:tab => :activities) %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.edit'), :pencil, :white), edit_company_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), companies_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_company'), :plus), new_company_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render params[:tab] %>

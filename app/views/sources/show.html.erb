@@ -1,0 +1,15 @@
+<h2><%= @source.value %> <%= labeled @source.label %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.details'), source_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.contacts'), source_path(:tab => :contacts) %>
+  <%= nav_link_to t(:'button.activities'), source_path(:tab => :activities) %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.edit'), :pencil, :white), edit_source_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), sources_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_source'), :plus), new_source_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render params[:tab] %>

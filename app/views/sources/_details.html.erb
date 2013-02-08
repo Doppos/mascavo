@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.source_description') %></h4>
+      <div class="tags">
+        <%= @source.description %>
+      </div>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.other_info') %></h4>
+      <ul class="well-list">
+        <li>
+        <%= labeled t(@source.active_label[:text], :scope => :label), @source.active_label[:type] %>
+        </li>
+        <li>
+        <h5><%= t(:'misc.created_at') %> <%= l(@source.created_at) %></h5>
+        <div class="tags">
+          <%= iconed @source.created_by_user.name, :user %>
+        </div>
+        </li>
+        <li>
+        <h5><%= t(:'misc.updated_at') %> <%= l(@source.updated_at) %></h5>
+        <div class="tags">
+          <%= iconed @source.updated_by_user.name, :user %>
+        </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

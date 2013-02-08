@@ -1,0 +1,10 @@
+<% @source.contacts.each do |contact| %>
+  <div class="well well-info">
+    <h4><%= contact.company_list %></h4>
+    <h3><%= link_to contact.name, contact_path(contact) %></h3>
+    <h4><%= contact.preferable_contact %></h4>
+    <div class="tags">
+      <%= content_tag :span, iconed(contact.status, :tag) %>
+    </div>
+  </div>
+<% end %>

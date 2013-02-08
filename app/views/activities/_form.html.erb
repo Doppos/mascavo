@@ -1,0 +1,22 @@
+<%= simple_form_for @activity do |f| %>
+  <div class="alert alert-info alert-box">
+    <%= f.button :submit, :value => t(:'button.save_activity'), :class => "btn-primary" %>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span8 form-horizontal">
+      <div class="well">
+        <h4 class="well-title"><%= t(:'fieldset.activity_details') %></h4>
+        <%= f.input :datetime, :label => t(:'field.datetime'), :as => :string %>
+        <%= f.input :description, :label => t(:'field.description'), :input_html => { :rows => 3, :class => "input-block-level" } %>
+        <%= f.input :status, :label => t(:'field.status'), :collection => listable(:activities, :status), :include_blank => false %>
+      </div>
+    </div>
+
+    <div class="span4">
+      <div class="well">
+        <h4 class="well-title"><%= t(:'fieldset.other_information') %></h4>
+      </div>
+    </div>
+  </div>
+<% end %>

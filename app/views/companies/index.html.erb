@@ -1,0 +1,45 @@
+<h2><%= t(:'title.companies') %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.list_all'), companies_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.clients'), companies_path(:status => :client) %>
+  <%= nav_link_to t(:'button.leads'), companies_path(:status => :lead) %>
+  <%= link_to iconed(t(:'button.new_company'), :plus, :white), new_company_path, :class => "btn btn-primary pull-right" %>
+</ul>
+
+<div class="row-fluid">
+  <div class="well span9">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><%= t(:'field.name') %></th>
+          <th><%= t(:'field.contacts') %></th>
+          <th><%= t(:'field.preferable_contact') %></th>
+          <th><%= t(:'field.status') %></th>
+          <th style="width: 70px;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= company.id %></td>
+            <td><%= link_to company.name, company %></td>
+            <td><%= company.contact_list %></td>
+            <td><%= company.preferable_contact %></td>
+            <td><%= labeled t(company.status, :scope => :label), company.status_label %></td>
+            <td>
+              <div class="actions">
+                <%= link_to iconed(nil, :eye_open), company, :rel => "tooltip", :'data-original-title' => t(:'tooltip.view') %>
+                <%= link_to iconed(nil, :pencil), edit_company_path(company), :rel => "tooltip", :'data-original-title' => t(:'tooltip.edit') %>
+                <%= link_to iconed(nil, :trash), company_path(company), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :rel => "tooltip", :'data-original-title' => t(:'tooltip.trash') %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render "filters" %>
+</div>

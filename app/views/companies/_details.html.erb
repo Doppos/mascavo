@@ -1,0 +1,118 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.contacts') %></h4>
+      <ul class="well-list">
+        <% @company.jobs.each do |job| %>
+          <li>
+            <h4><%= job.position %></h4>
+            <h3><%= link_to job.contact.name, contact_path(job.contact) %></h3>
+            <div class="tags">
+              <%= content_tag :span, iconed(job.contact.status, :tag) %>
+              <%= content_tag :span, iconed(t(:'label.primary_contact'), :ok) if job.primary_contact %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.contact_info') %></h4>
+      <ul class="well-list">
+        <% @company.contact_infos.each do |contact_info| %>
+          <li>
+            <h5><%= contact_info.name %></h5>
+            <h4><%= contact_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(contact_info.label, :tag) unless contact_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if contact_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.online_info') %></h4>
+      <ul class="well-list">
+        <% @company.online_infos.each do |online_info| %>
+          <li>
+            <h5><%= online_info.name %></h5>
+            <h4><%= online_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(online_info.label, :tag) unless online_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if online_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.address_info') %></h4>
+      <ul class="well-list">
+        <% @company.address_infos.each do |address_info| %>
+          <li>
+            <h4><%= address_info.city << " - " << address_info.state %></h4>
+            <h5><%= address_info.street %></h5>
+            <h5><%= address_info.zipcode %></h5>
+            <div class="tags">
+              <%= content_tag :span, iconed(address_info.label, :tag) unless address_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if address_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.document') %></h4>
+      <ul class="well-list">
+        <% @company.document_infos.each do |document_info| %>
+          <li>
+            <h5><%= document_info.name %></h5>
+            <h4><%= document_info.value%></h4>
+            <div class="tags">
+              <%= content_tag :span, iconed(document_info.label, :tag) unless document_info.label.nil? %>
+              <%= content_tag :span, iconed(t(:'label.preferable'), :ok) if document_info.preferable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="span4">
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.aditional_info') %></h4>
+      <div class="thumbnail">
+        <%= image_tag image_path("company-logo.png") %>
+      </div>
+      <div class="tags">
+        <%= @company.notes %>
+      </div>
+    </div>
+
+    <div class="well well-info">
+      <h4 class="well-title"><%= t(:'title.other_info') %></h4>
+      <ul class="well-list">
+        <li>
+        <%= labeled t(@company.public_label[:text], :scope => :label), @company.public_label[:type] %>
+        <%= labeled t(@company.active_label[:text], :scope => :label), @company.active_label[:type] %>
+        </li>
+        <li>
+        <h5><%= t(:'misc.created_at') %> <%= l(@company.created_at) %></h5>
+        <div class="tags">
+          <%= iconed @company.created_by_user.name, :user %>
+        </div>
+        </li>
+        <li>
+        <h5><%= t(:'misc.updated_at') %> <%= l(@company.updated_at) %></h5>
+        <div class="tags">
+          <%= iconed @company.updated_by_user.name, :user %>
+        </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

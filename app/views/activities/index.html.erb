@@ -1,0 +1,41 @@
+<h2><%= t(:'title.activities') %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.list_all'), activities_path, :match => :fullpath %>
+  <%= link_to iconed(t(:'button.new_activity'), :plus, :white), new_activity_path, :class => "btn btn-primary pull-right" %>
+</ul>
+
+<div class="row-fluid">
+  <div class="well span9">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><%= t(:'field.description') %></th>
+          <th><%= t(:'field.datetime') %></th>
+          <th><%= t(:'field.status') %></th>
+          <th style="width: 70px;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @activities.each do |activity| %>
+          <tr>
+            <td><%= activity.id %></td>
+            <td><%= activity.description %></td>
+            <td><%= activity.datetime %></td>
+            <td><%= labeled activity.status %></td>
+            <td>
+              <div class="actions">
+                <%= link_to iconed(nil, :eye_open), activity, :rel => "tooltip", :'data-original-title' => t(:'tooltip.view') %>
+                <%= link_to iconed(nil, :pencil), edit_activity_path(activity), :rel => "tooltip", :'data-original-title' => t(:'tooltip.edit') %>
+                <%= link_to iconed(nil, :trash), activity_path(activity), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :rel => "tooltip", :'data-original-title' => t(:'tooltip.trash') %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render "filters" %>
+</div>

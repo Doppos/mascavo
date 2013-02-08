@@ -1,0 +1,41 @@
+<h2><%= t(:'title.deals') %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.list_all'), deals_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.open'), deals_path(:status => :open) %>
+  <%= nav_link_to t(:'button.closed'), deals_path(:status => :closed) %>
+  <%= link_to iconed(t(:'button.new_deal'), :plus, :white), new_deal_path, :class => "btn btn-primary pull-right" %>
+</ul>
+
+<div class="row-fluid">
+  <div class="well span9">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><%= t(:'field.date') %></th>
+          <th><%= t(:'field.status') %></th>
+          <th style="width: 70px;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @deals.each do |deal| %>
+          <tr>
+            <td><%= deal.id %></td>
+            <td><%= l(deal.date) %></td>
+            <td><%= labeled t(deal.status) %></td>
+            <td>
+              <div class="actions">
+                <%= link_to iconed(nil, :eye_open), deal, :rel => "tooltip", :'data-original-title' => t(:'tooltip.view') %>
+                <%= link_to iconed(nil, :pencil), edit_deal_path(deal), :rel => "tooltip", :'data-original-title' => t(:'tooltip.edit') %>
+                <%= link_to iconed(nil, :trash), deal_path(deal), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :rel => "tooltip", :'data-original-title' => t(:'tooltip.trash') %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render "filters" %>
+</div>

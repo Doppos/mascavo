@@ -1,0 +1,13 @@
+<h2><%= t(:'title.edit_source') %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.primary_data'), "#primary_data", :'data-toggle' => "tab", :wrap_class => "active" %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.show'), :eye_open, :white), source_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), sources_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_source'), :plus), new_source_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render "form" %>

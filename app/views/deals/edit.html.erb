@@ -1,0 +1,14 @@
+<h2><%= t(:'title.edit_deal') %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.primary_data'), "#primary_data", :'data-toggle' => "tab", :wrap_class => "active" %>
+  <%= nav_link_to t(:'button.complementary_data'), "#complementary_data", :'data-toggle' => "tab" %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.show'), :eye_open, :white), deal_path, :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), deals_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_deal'), :plus), new_deal_path, :class => "btn" %>
+  </div>
+</ul>
+
+<%= render "form" %>
