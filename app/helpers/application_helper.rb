@@ -16,16 +16,24 @@ module ApplicationHelper
     wrap_class = wrap_class.to_s << " active" if current_page?(link_path, match)
     content_tag :li, :class => wrap_class do
       link_to link_text, link_path, options
+      #yield if block_given?
     end
   end
 
   def iconed(text, *names)
-    icon = content_tag :i, nil, :class => names.map{ |name| "icon-#{name.to_s.gsub('_','-')}" }
-    icon << " " << text
+    caret = icon = ""
+    caret = content_tag(:span, nil, :class => "caret") if names.delete(:dropdown)
+    icon = content_tag(:i, nil, :class => names.map{|name| "icon-#{name.to_s.gsub('_','-')}"}) unless names.empty?
+    [icon, text, caret].join(" ").strip.html_safe
   end
 
-  def labeled(text, type = :label)
-    name = type == :label ? "label" : "label label-#{type.to_s.gsub('_','-')}"
+  def labeled(text, type = nil)
+    name = type.nil? ? "label" : "label label-#{type.to_s.gsub('_','-')}"
+    content_tag :span, text, :class => name
+  end
+
+  def badged(text, type = nil)
+    name = type.nil? ? "badge" : "badge badge-#{type.to_s.gsub('_','-')}"
     content_tag :span, text, :class => name
   end
 

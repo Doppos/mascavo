@@ -60,10 +60,15 @@ html {
     color: inherit; }}
 
 .navbar .btn-group.user-welcome {
-  margin-top: 7px; }
+  margin-top: 7px;
+
+  .btn .caret {
+    margin-left: 4px;
+    vertical-align: 2px; }}
 
 .footer {
   text-align: center;
+  padding-bottom: 20px;
 
   a {
     color: $grey;
@@ -146,6 +151,9 @@ html {
     text-decoration: none;
     @include opacity(10); }}
 
+.table .actions > i {
+  @include opacity(3); }
+
 .table thead {
   background: #e5e5e5;
   border-top: 1px solid #ddd; }
@@ -212,3 +220,11 @@ input[type="text"] {
 
 .form-horizontal .control-group {
   margin-bottom: 10px; }
+
+.adicionar {
+  font-size: 0.9em;
+  vertical-align: 5px;
+  margin-left: 8px; }
+
+.form-horizontal .adicionar {
+  vertical-align: middle; }

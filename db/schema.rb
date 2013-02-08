@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228005657) do
+ActiveRecord::Schema.define(:version => 20130207203023) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20121228005657) do
     t.string   "name"
     t.string   "trading_name"
     t.string   "image"
-    t.integer  "employees"
-    t.float    "annual_income"
+    t.string   "employees"
+    t.string   "annual_income"
     t.string   "industry"
     t.text     "notes"
     t.boolean  "public"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20121228005657) do
     t.integer  "updated_by"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "status"
   end
 
   add_index "companies", ["account_id"], :name => "index_companies_on_account_id"
@@ -130,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20121228005657) do
 
   create_table "deals", :force => true do |t|
     t.date     "date"
-    t.string   "stage"
+    t.string   "status"
     t.integer  "account_id"
     t.integer  "created_by"
     t.integer  "updated_by"

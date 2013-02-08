@@ -10,18 +10,20 @@
           <h4 class="well-title"><%= t(:'fieldset.contact') %></h4>
           <%= f.input :name, :label => t(:'field.name') %>
           <%= f.input :status, :label => t(:'field.status'), :collection => listable(:contacts, :status), :include_blank => false; %>
-          </div>
-          <div class="well">
-            <h4 class="well-title"><%= t(:'fieldset.professional_information') %></h4>
+        </div>
+
+        <div class="well">
+          <h4 class="well-title"><%= t(:'fieldset.professional_information') %></h4>
           <%= f.simple_fields_for :jobs do |a| %>
             <%= a.input :company, :label => t(:'field.company') do %>
-              <%= a.input_field :company_id, :as => :select, :collection => Company.all, :include_blank => t(:'message.select_company') %>
-              <%= link_to t(:'button.add_company'), new_company_path %>
+              <%= a.input_field :company_id, :as => :select, :collection => Company.all, :include_blank => t(:'label.select_company') %>
+              <%= link_to t(:'button.add_company'), new_company_path, :class => "adicionar" %>
             <% end %>
             <%= a.input :position, :label => t(:'field.position') %>
             <%= a.input :primary_contact, :inline_label => t(:'field.primary_contact'), :label => false %>
           <% end %>
         </div>
+
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.contact_information') %></h4>
           <%= f.simple_fields_for :contact_infos do |a| %>
@@ -39,11 +41,12 @@
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.contact_source') %></h4>
           <%= f.input :source, :label => t(:'field.source') do %>
-            <%= f.input_field :source_id, :as => :select, :collection => source_collection, :include_blank => t(:'message.select_source') %>
-            <%= link_to t(:'button.add_source'), new_source_path %>
+            <%= f.input_field :source_id, :as => :select, :collection => source_collection, :include_blank => t(:'label.select_source') %>
+            <%= link_to t(:'button.add_source'), new_source_path, :class => "adicionar" %>
           <% end %>
           <%= f.input :date, :label => t(:'field.date'), :as => :string %>
         </div>
+
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.other_information') %></h4>
           <%= f.input :public, :inline_label => t(:'field.public'), :label => false %>
@@ -65,6 +68,7 @@
             <%= a.input :preferable, :inline_label => t(:'field.preferable'), :label => false %>
           <% end %>
         </div>
+
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.online_information') %></h4>
           <%= f.simple_fields_for :online_infos do |a| %>
@@ -76,6 +80,7 @@
             <% end %>
           <% end %>
         </div>
+
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.document_information') %></h4>
           <%= f.simple_fields_for :document_infos do |a| %>
@@ -88,18 +93,19 @@
           <% end %>
         </div>
       </div>
+
       <div class="span4">
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.personal_information') %></h4>
           <%= f.input :birthdate, :label => t(:'field.birthdate'), :as => :string %>
           <%= f.input :image, :label => t(:'field.image'), :as => :file %>
         </div>
+
         <div class="well">
           <h4 class="well-title"><%= t(:'fieldset.aditional_information') %></h4>
           <%= f.input :notes, :label => t(:'field.notes'), :input_html => { :rows => 7, :class => "input-block-level" } %>
         </div>
       </div>
-
     </div>
   </div>
 <% end %>

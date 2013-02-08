@@ -15,11 +15,12 @@
           <th>#</th>
           <th><%= t(:'field.name') %></th>
           <th><%= t(:'field.company') %></th>
-          <th><%= t(:'field.contact_info') %></th>
+          <th><%= t(:'field.preferable_contact') %></th>
           <th><%= t(:'field.status') %></th>
           <th style="width: 70px;"></th>
         </tr>
       </thead>
+
       <tbody>
         <% @contacts.each do |contact| %>
           <tr>
@@ -40,5 +41,5 @@
       </tbody>
     </table>
   </div>
-  <%= render "contacts/sidebar" %>
+  <%= render "filters" %>
 </div>

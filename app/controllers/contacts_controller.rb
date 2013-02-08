@@ -14,6 +14,7 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
+    params[:tab] ||= "details"
   end
 
   def new
@@ -37,7 +38,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     if @contact.save
-      redirect_to @contact, :notice => I18n.t(:contact_was_successfully_created)
+      redirect_to @contact, :notice => I18n.t(:'message.contact_was_successfully_created')
     else
       render :action => "new"
     end
@@ -46,7 +47,7 @@ class ContactsController < ApplicationController
   def update
     @contact = Contact.find(params[:id])
     if @contact.update_attributes(params[:contact])
-      redirect_to @contact, :notice => I18n.t(:contact_was_successfully_updated)
+      redirect_to @contact, :notice => I18n.t(:'message.contact_was_successfully_updated')
     else
       render :action => "edit"
     end

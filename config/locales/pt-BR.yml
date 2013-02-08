@@ -229,7 +229,20 @@ pt-BR:
     city: Cidade
     state: UF
     zipcode: CEP
-    contact_info: Contato preferencial
+    preferable_contact: Contato preferencial
+    industry: Setor
+    logotype: Logotipo
+    trading_name: Nome fantasia
+    employees: Funcionários
+    annual_income: Faturamento anual
+    company_name: Razão Social
+    contacts: Contatos
+    number_of_contacts: Número de contatos
+    value: Valor
+    description: Descrição
+    datetime: Data e hora
+    registered: Cadastrado
+    role: Nível
   fieldset:
     contact_source: Origem do contato
     personal_information: Informações pessoais
@@ -241,11 +254,23 @@ pt-BR:
     other_information: Outras informações
     aditional_information: Informações adicionais
     contact: Contato
+    company: Empresa
+    contacts: Contatos
+    source_info: Informações do canal
+    deal_info: Informações do negócio
+    activity_details: Detalhes da atividade
   button:
     save_contact: Salvar contato
     new_contact: Novo contato
-    add_source: adicionar canal
-    add_company: adicionar empresa
+    new_company: Nova empresa
+    new_source: Novo canal
+    add_source: novo canal
+    add_company: nova empresa
+    add_contact: novo contato
+    save_company: Salvar empresa
+    save_source: Salvar canal
+    save_deal: Salvar negócio
+    save_activity: Salvar atividade
     show: Visualizar
     list: Listar
     edit: Editar
@@ -257,10 +282,29 @@ pt-BR:
     details: Detalhes
     activities: Atividades
     deals: Negócios
+    contacts: Contatos
+    primary_data: Dados principais
+    complementary_data: Dados complementares
+    sign_in: Login
+    sign_up: Criar usuário
+    open: Abertos
+    closed: Fechados
+    new_deal: Novo negócio
+    new_activity: Nova atividade
   title:
     new_contact: Novo contato
     edit_contact: Editar contato
+    edit_company: Editar empresa
+    new_company: Nova empresa
+    new_source: Novo canal
+    new_deal: Novo negócio
+    edit_deal: Editar negócio
+    edit_source: Editar canal
+    new_activity: Nova atividade
+    edit_activity: Editar atividade
     contacts: Contatos
+    companies: Empresas
+    sources: Canais
     filters: Filtros
     professional_info: Informações profissionais
     personal_info: Informações pessoais
@@ -270,11 +314,26 @@ pt-BR:
     online_info: Presença online
     document_info: Documentos pessoais
     other_info: Outras informações
+    document: Documentos
+    aditional_info: Informações adicionais
+    source_description: Descrição do canal
+    deals: Negócios
+    activities: Atividades
+    sign_in_info: Informações de login
+    user_info: Informações do usuário
   message:
     are_you_sure?: Você tem certeza?
-    select_source: Selecione o canal
     send_to_trash?: Enviar para a lixeira?
-    select_company: Selecione a empresa
+    contact_was_successfully_updated: Contato atualizado com sucesso
+    contact_was_successfully_created: Contato criado com sucesso
+    company_was_successfully_created: Empresa criada com sucesso
+    company_was_successfully_updated: Empresa atualizada com sucesso
+    source_was_successfully_updated: Canal atualizado com sucesso
+    source_was_successfully_created: Canal criado com sucesso
+    deal_was_successfully_updated: Negócio atualizado com sucesso
+    deal_was_successfully_created: Negócio criado com sucesso
+    activity_was_successfully_created: Atividade criada com sucesso
+    activity_was_successfully_updated: Atividade atualizada com sucesso
   label:
     active: ativo
     trash: lixeira
@@ -284,6 +343,10 @@ pt-BR:
     lead: lead
     primary_contact: Contato principal
     preferable: Preferencial
+    select: Selecione...
+    select_contact: Selecione o contato...
+    select_source: Selecione o canal...
+    select_company: Selecione a empresa...
   tooltip:
     view: Visualizar
     edit: Editar
@@ -291,6 +354,9 @@ pt-BR:
   misc:
     created_at: Criado em
     updated_at: Atualizado em
+    current_sign_in: Login  atual
+    last_sign_in: Último login
+    sign_in_count: Quantidade de logins
   menu:
     contacts: Contatos
     companies: Empresas
@@ -299,6 +365,8 @@ pt-BR:
     activities: Atividades
     account: Conta
     dashboard: Painel
+    edit: Editar
+    sign_out: Logout
+    users: Usuários
+    settings: Configurações
 
-  contact_was_successfully_updated: Contato atualizado com sucesso
-  contact_was_successfully_saved: Contato criado com sucesso

@@ -1,27 +1,48 @@
-<h3>Users</h3>
+<h2><%= t(:'title.users') %></h2>
 
-<table class="table table-condensed">
-    <thead>
-      <tr>
-          <th>Email</th>
-          <th>Registered</th>
-          <th>Role</th>
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.list_all'), users_path, :match => :fullpath %>
+  <%= link_to iconed(t(:'button.new_user'), :plus, :white), "#", :class => "btn btn-primary pull-right" %>
+</ul>
+
+<div class="row-fluid">
+  <div class="well span9">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><%= t(:'field.name') %></th>
+          <th><%= t(:'field.email') %></th>
+          <th><%= t(:'field.registered') %></th>
+          <th><%= t(:'field.role') %></th>
           <th></th>
-          <th></th>
-      </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-          <td><%= link_to user.email, user %></td>
-          <td><%= user.created_at.to_date %></td>
-          <td><%= user.role %></td>
-          <td>
-            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-            <%= render user %>
-          </td>
-          <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <th style="width: 70px;"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.name, user %></td>
+            <td><%= user.email %></td>
+            <td><%= l(user.created_at.to_date) %></td>
+            <td><%= labeled user.role %></td>
+            <td>
+              <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-small" type="button">Change role</a>
+              <%= render user %>
+            </td>
+            <td>
+              <div class="actions">
+                <%= link_to iconed(nil, :eye_open), user, :rel => "tooltip", :'data-original-title' => t(:'tooltip.view') %>
+                <%= link_to iconed(nil, :pencil), edit_user_registration_path(user), :rel => "tooltip", :'data-original-title' => t(:'tooltip.edit') %>
+                <%= link_to iconed(nil, :trash), user_path(user), :data => { :confirm => t(:'message.send_to_trash?') }, :method => :delete, :rel => "tooltip", :'data-original-title' => t(:'tooltip.trash') unless user == current_user %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render "filters" %>
+</div>

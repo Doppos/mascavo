@@ -1,4 +1,14 @@
-<h3>User</h3>
-<p>Email: <%= @user.email %></p>
-<p>Created at: <%= @user.created_at.to_date %></p>
-<p>Role: <%= @user.role %></p>
+<h2><%= @user.name %> <%= labeled @user.role %></h2>
+
+<ul class="nav nav-tabs">
+  <%= nav_link_to t(:'button.details'), user_path, :match => :fullpath %>
+  <%= nav_link_to t(:'button.activities'), user_path(:tab => :activities) %>
+
+  <div class="btn-group pull-right">
+    <%= link_to iconed(t(:'button.edit'), :pencil, :white), edit_user_registration_path(@user), :class => "btn btn-primary" %>
+    <%= link_to iconed(t(:'button.list'), :th_list), users_path, :class => "btn" %>
+    <%= link_to iconed(t(:'button.new_user'), :plus), "#", :class => "btn" %>
+  </div>
+</ul>
+
+<%= render params[:tab] %>

@@ -9,4 +9,20 @@ class Source < ActiveRecord::Base
     self.label << " - " << self.value
   end
 
+  def active_label
+    if self.active
+      { :text => :active, :type => :success }
+    else
+      { :text => :trash, :type => :important }
+    end
+  end
+
+  def created_by_user
+    User.find self.created_by
+  end
+
+  def updated_by_user
+    User.find self.updated_by
+  end
+
 end
